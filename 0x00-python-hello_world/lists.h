@@ -1,17 +1,15 @@
 #ifndef LISTS_H
 #define LISTS_H
 
-/* Std Lib */
 #include <stdlib.h>
 
-/* Struct */
-
 /**
- * struct listint_s - struct for singly linked list
- * @n: integer
- * @next: points to next node
+ * struct listint_s - Node in a singly linked list
+ * @n: Integer value
+ * @next: Pointer to the next node
  *
- * Description: node structure for singly liked list
+ * Description: singly linked list node structure
+ * for Holberton projects
  */
 typedef struct listint_s
 {
@@ -19,10 +17,10 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-/* Prototypes */
-int check_cycle(listint_t *list);
-void free_listint(listint_t *head);
-listint_t *add_nodeint(listint_t **head, const int n);
-size_t print_listint(const listint_t *h);
 
-#endif /* end of LIST_H file */
+size_t print_listint(const listint_t *h);
+listint_t *add_nodeint(listint_t **head, const int n);
+void free_listint(listint_t *head);
+int check_cycle(listint_t *list);
+
+#endif /* LISTS_H */
