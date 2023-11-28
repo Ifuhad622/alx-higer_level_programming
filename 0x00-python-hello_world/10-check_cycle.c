@@ -1,40 +1,32 @@
 #include "lists.h"
 
 /**
- * check_cycle - checks if a singly linked list has
- * a cycle in it
- * @list: pointer to the list
- * Return: 0 if there is no cycle,
- * 1 if there is a cycle
+ * check_cycle - func verifies linked list for cycle
+ * @list: linked list to verify
+ * Return: no cycle (0), there is a cycle (1)
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *p2;
-	listint_t *prev;
+	listint_t *list_slow, *list_fast;
 
-	p2 = list;
-	prev = list;
-	while (list && p2 && p2->next)
+	if (!list)
 	{
-		list = list->next;
-		p2 = p2->next->next;
-		if (list == p2)
+		return (0);
+	}
+
+	list_fast = list_slow = list;
+	while (list_fast)
+	{
+		if (list_fast->next == NULL || (list_fast->next)->next == NULL)
 		{
-			list = prev;
-			prev =  p2;
-			while (1)
-			{
-				p2 = prev;
-				while (p2->next != list && p2->next != prev)
-				{
-					p2 = p2->next;
-				}
-				if (p2->next == list)
-					break;
-				list = list->next;
-			}
+			return (0);
+		}
+		list_fast = (list_fast->next)->next;
+		if (list_slow == list_fast)
+		{
 			return (1);
 		}
+		list_slow = list_slow->next;
 	}
 	return (0);
 }
